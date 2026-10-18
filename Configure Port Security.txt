@@ -1,0 +1,25 @@
+Configure Port Security
+#These commands are used for switch hardening.
+
+switchport mode access
+switchport port-security
+switchport port-security maximum 1
+switchport port-security mac-address sticky 
+
+switchport port-security violation restrict
+spanning-tree portfast
+spanning-tree bpduguard enable
+end
+
+
+
+#Secure unused ports
+vlan 999
+name Blackhole
+exit
+
+int range fa 0/3-24
+switchport mode access
+switchport access vlan 999
+shutdown 
+end
